@@ -20,6 +20,8 @@
       const gameArea = document.querySelector('.game');
       if (typeof initGame === 'function') {
         initGame(gameArea);
+      } else {
+        console.error('initGame function not found');
       }
     });
   </script>
