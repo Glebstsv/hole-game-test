@@ -1,6 +1,8 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Игра: "Лунка"</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="style.css"><script defer="defer" src="/bundle.202c1d32e71a84fd1e64.js"></script></head><body><div id="app"><h1>Игра "Лунка"</h1><div class="game"><h2>Игровое поле</h2></div></div><script src="game.js"></script><script>document.addEventListener('DOMContentLoaded', function() {
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Игра: "Лунка"</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="style.css"><script defer="defer" src="/bundle.4f071dff986aeca3a38e.js"></script></head><body><div id="app"><h1>Игра "Лунка"</h1><div class="game"><h2>Игровое поле</h2></div></div><script src="game.js"></script><script>document.addEventListener('DOMContentLoaded', function() {
       const gameArea = document.querySelector('.game');
       if (typeof initGame === 'function') {
         initGame(gameArea);
+      } else {
+        console.error('initGame function not found');
       }
     });</script></body></html>
