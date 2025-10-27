@@ -1,48 +1,61 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+name: CI - Build and Deploy to GitHub Pages
 
-module.exports = {
-  entry: path.resolve(__dirname, 'src', 'index.js'),
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.[contenthash].js',
-    clean: true,
-    publicPath: './' // <- ВАЖНО для GitHub Pages project site
-  },
-  devServer: {
-    static: path.resolve(__dirname, 'dist'),
-    port: 8080,
-    open: true,
-    hot: true
-  },
-  module: {
-    rules: [
-      {
-        test: /\.m?js$/i,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
-      },
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        type: 'asset/resource',
-        generator: {
-          filename: 'assets/[name].[contenthash][ext]'
-        }
-      }
-    ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'index.html')
-    })
-  ],
-  resolve: {
-    extensions: ['.js']
-  }
-};
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
