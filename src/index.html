@@ -4,10 +4,29 @@
   <meta charset="utf-8">
   <title>Игра: "Лунка"</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <script defer src="./bundle.a91acf02fb75f13a4a55.js"></script>
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <div id="app"></div>
-  <img src="./assets/character.2dbd01ce16c0fa83cb67.png" alt="character">
+  
+  <script type="module">
+    import { initGame } from './game.js';
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const app = document.getElementById('app');
+
+      const title = document.createElement('h1');
+      title.textContent = 'Игра "Лунка"';
+
+      const gameArea = document.createElement('div');
+      gameArea.className = 'game';
+      gameArea.innerHTML = '<h2>Игровое поле</h2>';
+
+      app.appendChild(title);
+      app.appendChild(gameArea);
+
+      initGame(gameArea);
+    });
+  </script>
 </body>
 </html>

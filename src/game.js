@@ -1,5 +1,3 @@
-import characterSrc from "./assets/character.png";
-
 function createGrid(container) {
   const wrapper = document.createElement("div");
   wrapper.className = "grid";
@@ -30,7 +28,7 @@ export function initGame(hostElement) {
 
   const img = document.createElement("img");
   img.className = "character";
-  img.src = characterSrc;
+  img.src = "./assets/character.png";
   img.alt = "character";
   img.draggable = false;
 
@@ -46,5 +44,3 @@ export function initGame(hostElement) {
     currentIndex = nextIndex;
   }, intervalMs);
 }
-
-export { chooseRandomDifferent };
