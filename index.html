@@ -1,17 +1,6 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Игра: "Лунка"</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="./style.css"><script defer="defer" src="/bundle.80d247cda014ca89daa4.js"></script></head><body><div id="app"></div><script type="module">import { initGame } from './game.js';
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      const app = document.getElementById('app');
-
-      const title = document.createElement('h1');
-      title.textContent = 'Игра "Лунка"';
-
-      const gameArea = document.createElement('div');
-      gameArea.className = 'game';
-      gameArea.innerHTML = '<h2>Игровое поле</h2>';
-
-      app.appendChild(title);
-      app.appendChild(gameArea);
-
-      initGame(gameArea);
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Игра: "Лунка"</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="style.css"><script defer="defer" src="/bundle.202c1d32e71a84fd1e64.js"></script></head><body><div id="app"><h1>Игра "Лунка"</h1><div class="game"><h2>Игровое поле</h2></div></div><script src="game.js"></script><script>document.addEventListener('DOMContentLoaded', function() {
+      const gameArea = document.querySelector('.game');
+      if (typeof initGame === 'function') {
+        initGame(gameArea);
+      }
     });</script></body></html>
