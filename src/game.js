@@ -23,12 +23,12 @@ function chooseRandomDifferent(currentIndex) {
   return next;
 }
 
-export function initGame(hostElement) {
+function initGame(hostElement) {
   const grid = createGrid(hostElement);
 
   const img = document.createElement("img");
   img.className = "character";
-  img.src = "./assets/character.png";
+  img.src = "assets/character.png";
   img.alt = "character";
   img.draggable = false;
 
@@ -44,3 +44,5 @@ export function initGame(hostElement) {
     currentIndex = nextIndex;
   }, intervalMs);
 }
+
+window.initGame = initGame;
