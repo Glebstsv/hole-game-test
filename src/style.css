@@ -1,0 +1,45 @@
+:root{
+  --cell-size: 100px;
+  --gap: 6px;
+}
+
+body{
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #979696;
+}
+
+h1, h2 {
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(4, var(--cell-size));
+  grid-template-rows: repeat(4, var(--cell-size));
+  gap: var(--gap);
+  background: #444;
+  padding: var(--gap);
+  border-radius: 8px;
+  max-width: max-content;
+  margin: 0 auto;
+}
+
+.cell {
+  background: #fff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.character {
+  max-width: 80%;
+  max-height: 80%;
+  user-select: none;
+  pointer-events: none;
+  transition: transform 120ms linear;
+}
