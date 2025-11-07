@@ -2,11 +2,11 @@
   "name": "dom-homework-whac-a-mole-main",
   "version": "1.0.0",
   "description": "DOM homework - main task only: 4x4 field with moving character",
-  "main": "/index.js",
+  "main": "index.js",
   "scripts": {
     "start": "webpack serve --mode development --open",
     "build": "webpack --mode production",
-    "lint": "eslint src --ext .js",
+    "lint": "eslint . --ext .js",
     "test": "jest --coverage",
     "clean": "rm -rf dist"
   },
