@@ -1,4 +1,4 @@
-import '/src/style.css';
+import '/style.css';
 import { initGame } from './game';
 
 document.addEventListener('DOMContentLoaded', () => {
