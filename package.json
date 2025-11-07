@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --mode development --open",
     "build": "webpack --mode production",
-    "lint": "eslint . --ext .js",
+    "lint": "eslint . --ext .js --ignore-pattern webpack.config.js --ignore-pattern jest.config.js",
     "test": "jest --coverage",
     "clean": "rm -rf dist"
   },
