@@ -1,7 +1,7 @@
 
 Badge сборки
 
-[![CI](https://github.com/Glebstsv/hole-game-test/actions/workflows/ci.yml/badge.svg)](https://github.com/Glebstsv/hole-game-test/actions/workflows/ci.yml)
+[![CI](https://github.com/Glebstsv/hole-game-test/actions/workflows/ci.yml/badge.svg)](https://github.com/Glebstsv/hole-game-test/actions/workflows/deploy.yml)
 
 GitHub Pages
 
