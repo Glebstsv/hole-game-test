@@ -1,48 +1,58 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("node:path");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: path.resolve(__dirname, "index.js"), // было "src/index.js"
+  entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.[contenthash].js",
+    publicPath: "",
     clean: true,
-    publicPath: "/",
-  },
-  devServer: {
-    static: path.resolve(__dirname, "dist"),
-    port: 8080,
-    open: true,
-    hot: true,
   },
   module: {
     rules: [
       {
-        test: /\.m?js$/i,
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
         },
       },
       {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+          },
+        ],
+      },
+      {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
         generator: {
-          filename: "assets/[name].[contenthash][ext]",
+          filename: "assets/[name][ext]",
         },
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: "asset/resource",
       },
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "index.html"), // было "src/index.html"
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html",
     }),
   ],
-  resolve: {
-    extensions: [".js"],
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
+    compress: true,
+    port: 9000,
   },
 };

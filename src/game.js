@@ -1,26 +1,30 @@
 import characterSrc from "./assets/character.png";
 
+const TOTAL_CELLS = 16;
+const GRID_SIZE = 4;
+const MOVE_INTERVAL_MS = 1000;
+
 function createGrid(container) {
   const wrapper = document.createElement("div");
   wrapper.className = "grid";
   wrapper.setAttribute("role", "grid");
 
-  for (let i = 0; i < 16; i += 1) {
+  for (let i = 0; i < TOTAL_CELLS; i += 1) {
     const cell = document.createElement("div");
     cell.className = "cell";
     cell.dataset.cell = String(i);
     cell.setAttribute("role", "gridcell");
-    wrapper.appendChild(cell);
+    wrapper.append(cell); 
   }
 
-  container.appendChild(wrapper);
+  container.append(wrapper); 
   return wrapper;
 }
 
 function chooseRandomDifferent(currentIndex) {
-  let next = Math.floor(Math.random() * 16);
+  let next = Math.floor(Math.random() * TOTAL_CELLS);
   while (next === currentIndex) {
-    next = Math.floor(Math.random() * 16);
+    next = Math.floor(Math.random() * TOTAL_CELLS);
   }
   return next;
 }
@@ -34,17 +38,15 @@ export function initGame(hostElement) {
   img.alt = "character";
   img.draggable = false;
 
-  let currentIndex = Math.floor(Math.random() * 16);
+  let currentIndex = Math.floor(Math.random() * TOTAL_CELLS);
   const startCell = grid.querySelector(`[data-cell="${currentIndex}"]`);
-  startCell.appendChild(img);
-
-  const intervalMs = 1000;
+  startCell.append(img); 
   setInterval(() => {
     const nextIndex = chooseRandomDifferent(currentIndex);
     const nextCell = grid.querySelector(`[data-cell="${nextIndex}"]`);
-    nextCell.appendChild(img);
+    nextCell.append(img); 
     currentIndex = nextIndex;
-  }, intervalMs);
+  }, MOVE_INTERVAL_MS);
 }
 
 export { chooseRandomDifferent };
