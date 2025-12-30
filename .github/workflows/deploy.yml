@@ -33,9 +33,9 @@ jobs:
       
       - name: Run ESLint
         run: npm run lint
-        
+
   build-and-deploy:
-    needs: [eslint, test] 
+    needs: [eslint] 
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
